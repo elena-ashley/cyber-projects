@@ -173,3 +173,12 @@ Answer the following questions to fill in the blanks:
 - Which URL do you navigate to in order to check that the ELK server is running? The easiest way to know if the ELK stack is running is to navigate to the Kibana site:  **http://localhost:5601** (replace localhost with the ELK server IP)
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+
+To build the DVWA docker containers complete the following steps:
+
+1. Connect to your ansible node and start it: docker container start ansible
+2. Attach to your ansible container: docker container attach ansible
+3. Create your .yml file that builds your dvwa docker container (can be found in the Ansible folder)
+4. Run your ansible playbook to build the dvwa docker containers listed in the "webserver section of the ansible hosts file": ansible-playbook ansible-dvwa.yml
+5. To test that a dvwa container was built ssh to the vm (username should be defined in the ansible config file: ssh <username>@10.0.0.7  - after successfully logging in run: curl localhost/setup.php to see the dvwa application website HTML.
+
