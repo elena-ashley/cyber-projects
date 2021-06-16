@@ -1,8 +1,12 @@
+---
+typora-root-url: Diagrams
+---
+
 ## Automated ELK Stack Deployment
 
 The files in this repository were used to configure the network depicted below.
 
-![TODO: Update the path with the name of your diagram](Images/diagram_filename.png)
+![elk stack](/elk stack.png)
 
 The webservers listed in the diagram (web1/2/3) are the hosts being monitored by the ELK stack.
 
@@ -108,7 +112,7 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-<img src="C:\Users\Elena\AppData\Roaming\Typora\typora-user-images\image-20210606200048025.png" alt="image-20210606200048025" style="zoom:80%;" />
+![](/../images/image-20210606200048025.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -133,17 +137,17 @@ These Beats allow us to collect the following information from each machine:
 
     This would tell us when a user gained authorization to the system - for example when a user logged in through SSH:
 
-    <img src="C:\Users\Elena\AppData\Roaming\Typora\typora-user-images\image-20210606201418502.png" alt="image-20210606201418502" style="zoom:80%;" />
+    ![image-20210606201418502](/../images/image-20210606201418502.png)
 
   - Metricbeat helps you monitor your servers and the services they host by collecting metrics from the operating system and services - CPU usage, Disk I/O, Ram, etc. 
 
-  - For example you can see host O/S information (_source) by filtering hostname to see info specific to that host:
+  - For example you can see **host O/S information** (_source) by filtering hostname to see info specific to that host:
 
-    <img src="C:\Users\Elena\AppData\Roaming\Typora\typora-user-images\image-20210606202140262.png" alt="image-20210606202140262" style="zoom:80%;" />
+    ![image-20210606202140262](/../images/image-20210606202140262.png)
 
-    And you can view what the overall container statistics for all containers across all hosts or just one of them as in the example below: (I have filtered for Web1)
+    And you can view what the overall container statistics for all containers across all hosts or just one of them as in the example below: **(I have filtered for Web1)**
 
-    <img src="C:\Users\Elena\AppData\Roaming\Typora\typora-user-images\image-20210606202501610.png" alt="image-20210606202501610" style="zoom:80%;" />
+    ![image-20210606202501610](/../images/image-20210606202501610.png)
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
@@ -153,19 +157,19 @@ SSH into the control node and follow the steps below:
 
 - Update the ansible config file to include the name of the remote user:
 
-  <img src="C:\Users\Elena\AppData\Roaming\Typora\typora-user-images\image-20210606204822562.png" alt="image-20210606204822562"  />
+  ![Change_to_Ansible_File](/../Ansible/Change_to_Ansible_File.PNG)
 
-  Update the Ansible hosts file to indicate what hosts the playbooks should run on. In this case we have 2 sections - one for the Webservers running DVWA (which the ELK stack is monitoring) and one for the Elk server (where ELK stack should be installed).
+  Update the Ansible [hosts](ansible_hosts_File.txt) file to indicate what hosts the playbooks should run on. In this case we have 2 sections - one for the Webservers running DVWA (which the ELK stack is monitoring) and one for the Elk server (where ELK stack should be installed).
 
-  ​														 ![image-20210606211156484](C:\Users\Elena\AppData\Roaming\Typora\typora-user-images\image-20210606211156484.png)
+  ![image-20210606211156484](/../images/image-20210606211156484.png)
 
-- Run the playbook, and navigate to http://localhost:5601 to check that the installation worked as expected.
+- Run the playbook, and navigate to http://localhost:5601 to check that the installation worked as expected. **(This is the Kabana site!)**
 
 Answer the following questions to fill in the blanks:
 - Which file is the playbook? Assuming we are talking about the ELK service playbook: **setupELK-playbook.yml**
 -  Where do you copy it? I didn't copy it, I created a file using the touch command and then edited the file with nano and copied in the content needed for the playbook. That file should be here: /etc/ansible.
 - Which file do you update to make Ansible run the playbook on a specific machine? **hosts file**
-- How do I specify which machine to install the ELK server on versus which to install Filebeat on? **The location to install filebeat is configured with the filebeat-config.yml file. The ansible hosts file specifics where to install the ELK service.** 
+- How do I specify which machine to install the ELK server on versus which to install Filebeat on? **The location to install filebeat is configured with the filebeat-config.yml file. The ansible hosts file specifies where to install the ELK service.** 
 - Which URL do you navigate to in order to check that the ELK server is running? The easiest way to know if the ELK stack is running is to navigate to the Kibana site:  **http://localhost:5601** (replace localhost with the ELK server IP)
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
